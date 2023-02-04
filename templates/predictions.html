@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  </head>
+
+  <script>
+
+    // document.addEventListener('DOMContentLoaded', () => {
+    //   input = document.getElementById('formFile')
+    //   input.addEventListener('change', onSelectFile, false);
+    // })
+  
+    // const upload = (file) => {
+    //   fetch('http://127.0.0.1:5000/predictions/send', { // Your POST endpoint
+    //     method: 'POST',
+    //     body: file // This is your file object
+    //   }).then(
+    //     response => response.json() // if the response is a JSON object
+    //   ).then(
+    //     success => console.log(success) // Handle the success response object
+    //   ).catch(
+    //     error => console.log(error) // Handle the error response object
+    //   );
+    // };
+  
+    // const onSelectFile = () => {
+    //     console.log(input.files[0]);
+    //     upload(input.files[0]);}
+  
+    function submit() {
+
+      var name = document.querySelector('input[type="file"]')
+      
+      var data = new FormData()
+      data.append('file', name.files[0])
+      console.log(data)
+
+      fetch('http://127.0.0.1:5000/predictions/send', {
+        method: 'POST',
+        body: data,
+      })
+    }
+  </script>
+  <body>
+
+    <div class="container">
+      <div
+        style="
+          background: linear-gradient(
+            90deg,
+            rgba(200, 114, 114, 1) 0%,
+            rgba(93, 132, 172, 1) 100%
+          );
+        "
+        class="p-4 p-md-5 mb-4 mt-4 rounded text-bg-dark"
+      >
+        <div class="col-md-6 pb-5">
+          <h1 class="display-2">ПельMEonХак</h1>
+          <p class="lead">Небольшой хакатон, для небольшой группы людей</p>
+        </div>
+      </div>
+
+      <div
+        class="navbar navbar-expand rounded border-bottom bg-gradient"
+        style="background-color: #c1c1c1; position: sticky; top: 10px"
+      >
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item px-2">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="/data">Data</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link active" href="/predictions">Predictions</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link disabled" href="/leaderboard">Leaderboard</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-md-4 text-bg" id="Predictions">
+        <h3 class="display-6">Predictions</h3>
+        <hr />
+        <p class="lead">
+          В решении нашей задаче нужно сделать предсказания по каждой отдельной
+          картинке тестовой выборки, загрузить в csv файл, после чего отправить
+          нам на проверку.
+        </p>
+        <div class="mb-3">
+            <from action="http://127.0.0.1:5000/predictions/send" method="POST">
+                <label for="formFile" class="form-label">Сюда скидывать файл</label>
+                <input class="form-control" type="file" id="formFile" name=""/>
+
+                <button class="mt-4 btn btn-primary" onclick="submit()">Submit predictions</button>
+            </form>
+        </div>
+      </div>
+
+    </div>
+  </body>
+</html>

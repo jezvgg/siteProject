@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  </head>
+  <body>
+
+    <div class="container">
+      <div
+        style="
+          background: linear-gradient(
+            90deg,
+            rgba(200, 114, 114, 1) 0%,
+            rgba(93, 132, 172, 1) 100%
+          );
+        "
+        class="p-4 p-md-5 mb-4 mt-4 rounded text-bg-dark"
+      >
+        <div class="col-md-6 pb-5">
+          <h1 class="display-2">ПельMEonХак</h1>
+          <p class="lead">Небольшой хакатон, для небольшой группы людей</p>
+        </div>
+      </div>
+
+      <div
+        class="navbar navbar-expand rounded border-bottom bg-gradient"
+        style="background-color: #c1c1c1; position: sticky; top: 10px"
+      >
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item px-2">
+                <a class="nav-link" href="/about">About</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link active" href="/data">Data</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link" href="/predictions">Predictions</a>
+              </li>
+              <li class="nav-item px-2">
+                <a class="nav-link disabled" href="/leaderboard">Leaderboard</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-md-4 text-bg" id="Data">
+        <h3 class="display-6">Data</h3>
+        <hr />
+        <p class="lead fw-bold">
+          Классифицируйте микроорганизм в заданном наборе данных.
+        </p>
+        <ul>
+          <p class="fs-4">
+            Существует 8 различных типов, заданных для микроорганизма, они
+            следующие
+          </p>
+          <li><p class="fs-5">Амеба---</p></li>
+          <li><p class="fs-5">Эвглена--</p></li>
+          <li><p class="fs-5">Гидра--</p></li>
+          <li><p class="fs-5">Парамеций--</p></li>
+          <li><p class="fs-5">Палочковидные бактерии--</p></li>
+          <li><p class="fs-5">Сферические бактерии--</p></li>
+          <li><p class="fs-5">Спиральные бактерии--</p></li>
+          <li><p class="fs-5">Дрожжи--</p></li>
+        </ul>
+        <br />
+
+        <span class="fw-bold lead">Вдохновение</span>
+        <hr />
+        <p class="lead">
+          Хочу построить мощную нейронную сеть, которая сможет классифицировать
+          эти изображения с большей точностью.<br />
+          <br />
+          --Все изображения могут иметь разный размер, поэтому сделайте их
+          одинакового размера<br />
+          <br />
+          --вы можете использовать свойство увеличения после разделения набора
+          данных<br />
+          Должно отметить, что датасет взять с сайта Kaggle, соответственно за
+          копирование данных от туда - дисквалификация.<br />
+        </p>
+      </div>
+
+    </div>
+  </body>
+</html>
