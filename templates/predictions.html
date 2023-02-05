@@ -14,42 +14,24 @@
   </head>
 
   <script>
-
-    // document.addEventListener('DOMContentLoaded', () => {
-    //   input = document.getElementById('formFile')
-    //   input.addEventListener('change', onSelectFile, false);
-    // })
-  
-    // const upload = (file) => {
-    //   fetch('http://127.0.0.1:5000/predictions/send', { // Your POST endpoint
-    //     method: 'POST',
-    //     body: file // This is your file object
-    //   }).then(
-    //     response => response.json() // if the response is a JSON object
-    //   ).then(
-    //     success => console.log(success) // Handle the success response object
-    //   ).catch(
-    //     error => console.log(error) // Handle the error response object
-    //   );
-    // };
-  
-    // const onSelectFile = () => {
-    //     console.log(input.files[0]);
-    //     upload(input.files[0]);}
   
     function submit() {
 
-      var name = document.querySelector('input[type="file"]')
-      
-      var data = new FormData()
-      data.append('file', name.files[0])
-      console.log(data)
+      var file = document.querySelector('input[type="file"]')
+      var team = document.querySelector('input[type="text"]')
 
-      fetch('http://127.0.0.1:5000/predictions/send', {
+      var data = new FormData()
+      data.append('file', file.files[0])
+      data.append('team', team.value)
+      console.log(data.keys())
+
+      fetch('http://127.0.0.1:5000/predictions', {
         method: 'POST',
         body: data,
-      })
-    }
+      }).then(response => response.json()).then(function(data) {
+        document.getElementById('result').innerHTML = data['result']
+      });
+    };
   </script>
   <body>
 
@@ -87,7 +69,7 @@
                 <a class="nav-link active" href="/predictions">Predictions</a>
               </li>
               <li class="nav-item px-2">
-                <a class="nav-link disabled" href="/leaderboard">Leaderboard</a>
+                <a class="nav-link" href="/leaderboard">Leaderboard</a>
               </li>
             </ul>
           </div>
@@ -98,15 +80,20 @@
         <h3 class="display-6">Predictions</h3>
         <hr />
         <p class="lead">
+          Сначала впишите название своей команды <br>
           В решении нашей задаче нужно сделать предсказания по каждой отдельной
           картинке тестовой выборки, загрузить в csv файл, после чего отправить
-          нам на проверку.
+          нам на проверку.<br>
+          Если не удалось считать файл, значит он неподходящего формата. (не csv)<br>
+          Если неверный формат csv файла, то значит нерпавильно его сохранили.
         </p>
+        <p class="'fs-4">Обязательно сделайте скрин вашего результата!</p>
         <div class="mb-3">
-            <from action="http://127.0.0.1:5000/predictions/send" method="POST">
-                <label for="formFile" class="form-label">Сюда скидывать файл</label>
-                <input class="form-control" type="file" id="formFile" name=""/>
-
+            <from action="http://127.0.0.1:5000/predictions" method="POST">
+                <label for="formText" class="form-label" id="team">Название команды</label>
+                <input class="form-control" type="text" id="formText"/>
+                <label for="formFile" class="form-label" id="result">{{ result }}</label>
+                <input class="form-control" type="file" id="formFile"/>
                 <button class="mt-4 btn btn-primary" onclick="submit()">Submit predictions</button>
             </form>
         </div>
