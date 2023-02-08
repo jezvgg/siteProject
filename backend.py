@@ -2,12 +2,28 @@ from flask import Flask, request, render_template, send_from_directory, redirect
 from sklearn.metrics import accuracy_score
 from database.db_helper import DB_helper
 import pandas as pd
+import os
 
-data_true = pd.read_csv('dataset/public.csv')
-help = DB_helper('database/predictions.db')
+# Загружаем CSV файл для анализа
+current_path = os.path.split(__file__)
+public_file = "%s/dataset/public.csv" % (current_path[0])
+if not os.path.exists(public_file):
+        raise Exception("ERROR: Невозможно запустить сайт. Не найден файл с данными  %s", public_file)
 
+data_true = pd.read_csv(public_file)
+
+# Подключаем базу данных
+database_file = "%s/database/predictions.db" % (current_path[0])
+if not os.path.exists(database_file):
+        raise Exception("ERROR: Невозможно запустить сайт. Не найден файл базы данных  %s", database_file)
+
+help = DB_helper(database_file)
+
+
+# Запуск Rest Api
 app = Flask(__name__)
 app.secret_key = 'p[singasFAfasjmgmd]'
+
 
 @app.route('/')
 def start():
