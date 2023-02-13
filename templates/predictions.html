@@ -25,7 +25,7 @@
       data.append('team', team.value)
       console.log(data.keys())
 
-      fetch('http://pelmeon.su/predictions', {
+      fetch('http://127.0.0.1:5000/predictions', {
         method: 'POST',
         body: data,
       }).then(response => response.json()).then(function(data) {

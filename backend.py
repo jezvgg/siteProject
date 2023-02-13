@@ -65,6 +65,12 @@ def get_data():
     redirect('http://127.0.0.1:5000/data')
     return send_from_directory(app.static_folder, 'data.zip', mimetype = 'zip')
 
+@app.route('/data/base')
+def get_base():
+    print(app.static_folder)
+    redirect('http://127.0.0.1:5000/data')
+    return send_from_directory(app.static_folder, 'baseline.zip', mimetype = 'zip')
+
 @app.route('/leaderboard')
 def view_leaderboard():
     preds = help.get_pred()
